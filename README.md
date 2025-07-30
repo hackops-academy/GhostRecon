@@ -1,8 +1,6 @@
 # GhostRecon
 A powerful tool which check the username on hundreds of websites
-# GhostRecon 🔍
 
-> A powerful open-source Username Intelligence Scanner  
 > Developed by [HackOps Academy](https://instagram.com/_hack_ops_)
 
 ## 📌 Features
