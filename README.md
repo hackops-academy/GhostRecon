@@ -10,7 +10,8 @@ A powerful tool which check the username on hundreds of websites
 - Saves results in a username.txt file which you can see by using ls command and then bat username.txt
   ```bash
   ls
-  bat username.txt ```
+  bat username.txt
+   ```
 - Direct search buttons (Instagram, Facebook, GitHub, etc.)
 
 ## 📦 Installation
