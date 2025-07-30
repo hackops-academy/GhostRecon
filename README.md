@@ -12,7 +12,7 @@ A powerful tool which check the username on hundreds of websites
   ls
   bat username.txt
    ```
-- Direct search buttons (Instagram, Facebook, GitHub, etc.)
+
 
 ## 📦 Installation
 ```bash
