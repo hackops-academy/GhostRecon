@@ -9,14 +9,14 @@ banner() {
     echo "@@@@@@@@@  @@@  @@@  @@@@@@@@  @@@@@@@  @@@@@@@  @@@@@@@@  @@@@@@@@  @@@@@@@@  @@@@@@@@  @@@@ @@@"
     echo "!@@        @@!  @@@  @@!  @@@  !@@        @@!    @@!  @@@  @@!       !@@       @@!  @@@  @@!@!@@@"
     echo "!@!        !@!  @!@  !@!  @!@  !@!        !@!    !@!  @!@  !@!       !@!       !@!  @!@  !@!!@!@!"
-    echo "!@! @!@!@  @!@!@!@!  @!@  !@!  !!@@!!     @!!    @!@!!@!   @!!!:!    !@!       @!@  !@!  @!@ !!@!"
+    echo "!@! @!@!@  @!@!@!@!  @!@  !@!  !!@@!!     @!!    @!@!!@!   @!!!:!    !@!       @!@  @!@  @!@ !!@!"
     echo "!!! !!@!!  !!!@!!!!  !@!  !!!   !!@!!!    !!!    !!@!@!    !!!!!:    !!!       !@!  !!!  !@!  !!!"
     echo ":!!   !!:  !!:  !!!  !!:  !!!       !:!   !!:    !!: :!!   !!:       :!!       !!:  !!!  !!:  !!!"
     echo ":!:   !::  :!:  !:!  :!:  !:!      !:!    :!:    :!:  !:!  :!:       :!:       :!:  !:!  :!:  !:!"
     echo " ::: ::::  ::   :::  ::::: ::  :::: ::     ::    ::   :::   :: ::::   ::: :::  ::::: ::   ::   ::"
     echo " :: :: :    :   : :   : :  :   :: : :      :      :   : :  : :: ::    :: :: :   : :  :   ::    :"
     echo -e "\e[0m"
-    echo -e "\e[1;93m[~] GhostRecon v2.0 | Made by HackOps Academy | @_hack_ops_\e[0m"
+    echo -e "\e[1;93m[~] GhostRecon v2.1 | Made by HackOps Academy | @_hack_ops_\e[0m"
     echo
 }
 
@@ -50,38 +50,34 @@ search_username() {
         ["Roblox"]="https://www.roblox.com/user.aspx?username=$username"
         ["Spotify"]="https://open.spotify.com/user/$username"
         ["GitLab"]="https://gitlab.com/$username"
-        ["Mastodon.social"]="https://mastodon.social/@$username"
+        ["Mastodon"]="https://mastodon.social/@$username"
         ["Bitbucket"]="https://bitbucket.org/$username"
     )
 
     for platform in "${!sites[@]}"; do
         url="${sites[$platform]}"
-        html=$(curl -s -L "$url")
 
-        if echo "$html" | grep -iqE "not found|doesn.t exist|404|unavailable|page isn.t available"; then
-            echo -e "\e[1;91m[✘] Not Found:\e[0m $platform ($url)"
+        if [[ "$platform" == "Instagram" || "$platform" == "Facebook" || "$platform" == "Twitter" || "$platform" == "Reddit" ]]; then
+            title=$(curl -s -A "Mozilla/5.0" "$url" | grep -i "<title>")
+            if echo "$title" | grep -qiE "not found|page not available|doesn't exist|404"; then
+                echo -e "\e[1;91m[✘] Not Found:\e[0m $platform ($url)"
+            else
+                echo -e "\e[1;92m[✔] Found:\e[0m $platform ($url)"
+                echo "$url" >> "$username.txt"
+            fi
         else
-            echo -e "\e[1;92m[✔] Found:\e[0m $platform ($url)"
-            echo "$url" >> "$username.txt"
+            html=$(curl -s -L "$url")
+            if echo "$html" | grep -qiE "not found|doesn.t exist|404|unavailable|page not available"; then
+                echo -e "\e[1;91m[✘] Not Found:\e[0m $platform ($url)"
+            else
+                echo -e "\e[1;92m[✔] Found:\e[0m $platform ($url)"
+                echo "$url" >> "$username.txt"
+            fi
         fi
     done
-}
-
-custom_buttons() {
-    echo -e "\n\e[1;96m[+] Quick Search Links (tap in Termux or browser):\e[0m"
-    echo -e "\e[1;93m🔎 Instagram:\e[0m    https://instagram.com/$username"
-    echo -e "\e[1;93m🔎 Facebook:\e[0m     https://facebook.com/$username"
-    echo -e "\e[1;93m🔎 GitHub:\e[0m       https://github.com/$username"
-    echo -e "\e[1;93m🔎 LinkedIn:\e[0m     https://linkedin.com/in/$username"
-    echo -e "\e[1;93m🔎 YouTube:\e[0m      https://youtube.com/$username"
-    echo -e "\e[1;93m🔎 Twitter:\e[0m      https://twitter.com/$username"
-    echo -e "\e[1;93m🔎 Snapchat:\e[0m     https://www.snapchat.com/add/$username"
-    echo -e "\e[1;93m🔎 TikTok:\e[0m       https://www.tiktok.com/@$username"
-    echo
 }
 
 # Main execution
 banner
 read -p $'\e[1;94m[>] Enter a username to scan: \e[0m' username
-custom_buttons
 search_username "$username"
