@@ -67,8 +67,21 @@ search_username() {
     done
 }
 
+custom_buttons() {
+    echo -e "\n\e[1;96m[+] Quick Search Links (tap in Termux or browser):\e[0m"
+    echo -e "\e[1;93m🔎 Instagram:\e[0m    https://instagram.com/$username"
+    echo -e "\e[1;93m🔎 Facebook:\e[0m     https://facebook.com/$username"
+    echo -e "\e[1;93m🔎 GitHub:\e[0m       https://github.com/$username"
+    echo -e "\e[1;93m🔎 LinkedIn:\e[0m     https://linkedin.com/in/$username"
+    echo -e "\e[1;93m🔎 YouTube:\e[0m      https://youtube.com/$username"
+    echo -e "\e[1;93m🔎 Twitter:\e[0m      https://twitter.com/$username"
+    echo -e "\e[1;93m🔎 Snapchat:\e[0m     https://www.snapchat.com/add/$username"
+    echo -e "\e[1;93m🔎 TikTok:\e[0m       https://www.tiktok.com/@$username"
+    echo
+}
 
 # Main execution
 banner
 read -p $'\e[1;94m[>] Enter a username to scan: \e[0m' username
+custom_buttons
 search_username "$username"
