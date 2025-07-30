@@ -67,28 +67,8 @@ search_username() {
     done
 }
 
-custom_buttons() {
-    echo -e "\n\e[1;96m[+] Quick Search Links (tap in Termux or browser):\e[0m"
-    platforms=("Instagram" "Facebook" "GitHub" "LinkedIn" "YouTube" "Twitter" "Snapchat" "TikTok")
-    urls=(
-        "https://instagram.com/$username"
-        "https://facebook.com/$username"
-        "https://github.com/$username"
-        "https://linkedin.com/in/$username"
-        "https://youtube.com/$username"
-        "https://twitter.com/$username"
-        "https://www.snapchat.com/add/$username"
-        "https://www.tiktok.com/@$username"
-    )
-
-    for i in "${!platforms[@]}"; do
-        echo -e "\e[1;93m🔎 ${platforms[$i]}:\e[0m  ${urls[$i]}"
-    done
-    echo
-}
 
 # Main execution
 banner
 read -p $'\e[1;94m[>] Enter a username to scan: \e[0m' username
-custom_buttons
 search_username "$username"
