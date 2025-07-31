@@ -28,7 +28,10 @@ menu() {
     echo -n -e "\n>> "
     read choice
     case $choice in
-        1) search_username ;;
+        1)
+    read -p $'\n[?] Enter username to search: ' username
+    search_username "$username"
+    ;;
         2) echo -e "\e[1;91m[!] Exiting GhostRecon. Stay anonymous...\e[0m"; exit 0 ;;
         *) echo -e "\e[1;91m[!] Invalid choice. Try again.\e[0m"; sleep 1; clear; banner; menu ;;
     esac
