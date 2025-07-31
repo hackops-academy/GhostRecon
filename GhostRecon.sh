@@ -20,6 +20,20 @@ banner() {
     echo
 }
 
+# Menu Function
+menu() {
+    echo -e "\e[1;96mChoose an option:\e[0m"
+    echo "  [1] Enter Username to search"
+    echo "  [2] Exit"
+    echo -n -e "\n>> "
+    read choice
+    case $choice in
+        1) search_username ;;
+        2) echo -e "\e[1;91m[!] Exiting GhostRecon. Stay anonymous...\e[0m"; exit 0 ;;
+        *) echo -e "\e[1;91m[!] Invalid choice. Try again.\e[0m"; sleep 1; clear; banner; menu ;;
+    esac
+}
+
 search_username() {
     username=$1
     echo -e "\n[+] Scanning for username: \e[1;92m$username\e[0m"
