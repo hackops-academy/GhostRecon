@@ -91,7 +91,9 @@ search_username() {
     done
 }
 
-# Main execution
+# Start Script
+clear
 banner
-read -p $'\e[1;94m[>] Enter a username to scan: \e[0m' username
-search_username "$username"
+while true; do
+    menu
+done
