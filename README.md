@@ -3,6 +3,12 @@ A powerful tool which check the username on hundreds of websites
 
 > Developed by [HackOps Academy](https://instagram.com/_hack_ops_)
 
+![banner](https://img.shields.io/badge/Made%20By-HackOps%20Academy-%23purple) 
+![Shell](https://img.shields.io/badge/Made%20with-Bash-blue)
+![Status](https://img.shields.io/badge/Status-Active-success)
+![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen)
+
+
 ## 📌 Features
 - Scans 100+ social media platforms
 - CLI-based, lightweight, fast
